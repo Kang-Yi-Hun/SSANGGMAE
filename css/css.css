@@ -1,0 +1,246 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 16px;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+:root{
+    --main-key-color: #FF4B4B;
+    --base-color: #E8E6E1;
+    --font-color: #4A4A4A;
+    --base-white: #fff;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    background-color: #e8e6e19d;
+    backdrop-filter: blur(1px);
+    transition: all 0.5;
+    z-index: 5;
+}
+
+
+a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+
+div#container > header > div#header-wrapper{
+    width: 80%;
+    min-width: 600px;
+    height: 6.0rem;
+    margin: 0 auto;
+    /* background-color: #dbdbdb; */
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.6s;
+}
+
+/* 로고 스타일 */
+div#container > header > div#header-wrapper > div.logo-container{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+div#container > header > div#header-wrapper > div.logo-container > img.logo{
+    width: 6.0rem;
+    height: 6.0rem;
+    transition: all 0.6s;
+}   
+/* 로고 스타일 */
+
+
+
+/* 햄버거 */
+.hamburgerbar > ul{
+    display: none;
+    list-style: none;
+    line-height: 6.0rem;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.hamburger{
+    margin-top: 5px;
+    height: 6px;
+    width: 30px;
+    border-radius: 20% / 90%;
+    background-color: #000000;
+    transition: 0.5s;
+    position: relative;
+}
+.hamburgerbar > ul:hover li:nth-child(1){
+    transform: translateY(10.5px) rotate(45deg);
+}
+.hamburgerbar > ul:hover li:nth-child(3){
+    transform: translateY(-10.5px) rotate(-45deg);
+}
+.hamburgerbar > ul:hover li:nth-child(2){
+    transform: translateX(-20px);
+    opacity: 0;
+}
+/* 햄버거 */
+
+
+
+/* 네비게이션 스타일 */
+div#container > header > div#header-wrapper > div.nav-container{
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin: 0 auto;
+    /* background-color: #fff; */
+}
+
+div#container > header > div#header-wrapper > div.nav-container > nav > ul{
+    list-style: none;
+    display: flex;
+    line-height: 6.0rem;
+    gap: 2.0rem;
+}
+
+div#container > header > div#header-wrapper > div.nav-container > nav > ul > li > a:hover{
+    color: var(--main-key-color);
+    font-weight: 600;
+}
+/* 네비게이션 스타일 */
+
+
+
+/* 검색창 스타일 */
+.search-container{
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.search-container > form{
+    position: relative;
+    display: flex;
+}
+
+.search-container > form > input[type="text"]{
+    background-color: none;
+    border: none;
+    width: 9.0rem;
+    border-radius: 30px 0px 0px 30px;
+    padding-left: 1.0rem;
+}
+
+.search-container > form > input[type="text"]::placeholder {
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.search-container > form > input[type="text"]:focus {
+    outline: none;
+}
+
+#search-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: 2.0rem;
+    height: 2.0rem;
+    border-radius: 0 50% 50% 0;
+    background-color: var(--base-white);
+}
+
+.search-ikon{
+    width: 1.0rem;
+    height: 1.0rem;
+}
+/* 검색창 스타일 */
+
+
+
+/* 위로가기 버튼 */
+#allow-icon{
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background-color: #4A4A4A; 
+    opacity: 0.6;
+    position: fixed; 
+    right: 5%; 
+    bottom: 5%; 
+    display: none;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    border: 1px solid #dbdbdb;
+}
+
+#allow-icon:hover{
+    opacity: 1;
+}
+
+#allow-icon.show{
+    display: block;
+}
+/* 위로가기 버튼 */
+
+
+
+
+#section-container{
+    width: 100%;
+}
+
+.section{
+    position: relative;
+    width: 80%;
+    min-width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+    background-color: #ff4b4b6e;
+    display: flex;
+    align-items: center;
+}
+
+.section > div{
+
+}
+
+
+@media (max-width: 768px) {
+    /* 폰트 사이즈 조절 */
+    html{
+        font-size: 14px;
+    }
+
+    /* nav 조절 */
+    div#container > header > div#header-wrapper > div.nav-container > nav > ul {
+        display: none;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        left: 0px;
+        top: 6.0rem;
+        background-color: #eee;
+        width: 100vw;
+        z-index: 1;
+    }
+
+    div#container > header > div#header-wrapper > div.nav-container > nav > ul.active {
+        display: flex;
+    }
+
+    /* 햄버거 버튼 */
+    .hamburgerbar > ul{
+        display: block;
+        
+    }
+  }

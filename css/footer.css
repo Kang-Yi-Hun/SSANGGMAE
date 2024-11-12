@@ -1,0 +1,97 @@
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 16px;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+:root{
+    --main-key-color: #FF4B4B;
+    --base-color: #E8E6E1;
+    --font-color: #4A4A4A;
+    --base-white: #fff;
+}
+
+footer{
+    position: absolute;
+    transform : translateY(-100% + footer);
+    width: 100%;
+    background-color: #E8E6E1;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.heading > a > img{
+    width: 100px;
+    height: 100px;
+    transition: all 0.5s;
+}
+
+.heading > a > img:hover{
+    transform: rotate(360deg)
+}
+
+footer ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-bottom: 50px;
+}
+
+footer ul li{
+    margin: 0.3rem 0;
+    color: #797979;
+    cursor: pointer;
+}
+
+footer ul li:hover{
+    color: var(--main-key-color);
+}
+
+.title{
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.info{
+    max-width: 500px;
+    padding: 20px;
+}
+
+.menus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social .bi{
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    color: #797979;
+}
+
+.social .bi:hover{
+    color: var(--main-key-color);
+}
+
+.footer-bottom{
+    font-size: 14px;
+    text-align: center;
+    line-height: 2.0rem;
+    width: 100%;
+    height: 2.0rem;
+    background-color: var(--main-key-color);
+    color: var(--base-white);
+}

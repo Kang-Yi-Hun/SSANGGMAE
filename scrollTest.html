@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤 연습</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .section{
+        width: 100vw;
+        height: 1080px;
+        font-size: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+
+    .info-bottom > ul {
+        list-style: none;
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        text-align: right;
+    }
+</style>
+<body>
+    <div id="container">
+        <div id="section1"class="section">section1</div>
+        <div id="section2"class="section">section2</div>
+        <div id="section3"class="section">section3</div>
+        <div id="section4"class="section">section4</div>
+        <div id="section5"class="section">section5</div>
+        <div id="section6"class="section">section6</div>
+    </div>
+
+    <div class="info-bottom">
+        <ul>
+            <li>#scrollTop : <span class="0T">0</span><span>px</span></li>
+            <li>#section1 : <span class="s10T">0</span><span>px</span></li>
+            <li>#section2 : <span class="s20T">0</span><span>px</span></li>
+            <li>#section3 : <span class="s30T">0</span><span>px</span></li>
+            <li>#section4 : <span class="s40T">0</span><span>px</span></li>
+            <li>#section5 : <span class="s50T">0</span><span>px</span></li>
+            <li>#section6 : <span class="s60T">0</span><span>px</span></li>
+        </ul>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+        $(window).on('scroll', function(){
+
+            const scrollTop = $(window).scrollTop();
+
+            // console.log($(window).scrollTop());
+
+            // 사용자 전체 스크롤 위치
+            $('.0T').text(parseInt(scrollTop)); 
+            
+            // 각 섹션마다의 스크롤 위치
+            $('.s10T').text(parseInt($('#section1').offset().top));
+            $('.s20T').text(parseInt($('#section2').offset().top));
+            $('.s30T').text(parseInt($('#section3').offset().top));
+            $('.s40T').text(parseInt($('#section4').offset().top));
+            $('.s50T').text(parseInt($('#section5').offset().top));
+            $('.s60T').text(parseInt($('#section6').offset().top));
+
+            // console.log(parseInt($('#section2').offset().top));
+
+            // 각 섹션마다의 스크롤 위치 이 해당 if문 마다 주고 싶은 효과를 주면 각 스크롤에 이동할 때 마다 효과가 작동할 것 같습니다.
+            if(scrollTop > $('#section1').offset().top){
+                $('.s10T').css('color', 'red');
+            }
+            if(scrollTop > $('#section2').offset().top){
+                $('.s20T').css('color', 'red');
+            }
+            if(scrollTop > $('#section3').offset().top){
+                $('.s30T').css('color', 'red');
+            }
+            if(scrollTop > $('#section4').offset().top){
+                $('.s40T').css('color', 'red');
+            }
+            if(scrollTop > $('#section5').offset().top){
+                $('.s50T').css('color', 'red');
+            }
+            if(scrollTop > $('#section6').offset().top){
+                $('.s60T').css('color', 'red');
+            }
+
+        });
+
+    </script>
+</body>
+</html>
