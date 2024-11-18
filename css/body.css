@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* 전체 배경색상 및 전체 폰트 지정 */
+body {
+  background-color: #f8f0e4;
+  font-size: 1.25rem;
+  font-family: "NeoDunggeunmo";
+}
+
+#main {
+  width: 100%;
+  min-width: 600px;
+  max-width: 96rem; /* 1920의 80% */
+  margin: 0 auto;
+  padding: 11rem 0; /* 헤더 사이즈 + 1rem */
+  display: flex;
+  background-color: #f8f0e4;
+}
+
+/* 메인 > 사이드 바 */
+div#sidebar {
+  border: solid 0px red;
+  min-width: 10rem;
+  margin: 0 0.5rem 0 1rem;
+}
+
+/* 사이드 바 버튼 */
+div#sidebar > button {
+  width: 100%;
+  height: 15rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* 메인 > 컨텐츠 */
+div#contents {
+  border: solid 0px red;
+  min-width: calc(600px - 2rem); /* 양옆 마진 2rem */
+  margin: 0 1rem 0 0.5rem;
+  background-color: #d9d9d9;
+  border-radius: 0.5rem;
+}
+
+/* 게임목록 헤더 */
+div#contents div#header {
+  height: 3rem;
+  background-color: #4a4a4a;
+  color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 사진 및 게임이름 담을 박스 */
+div#contents div.game_box {
+  height: calc(100% - 3rem);
+  display: flex;
+  margin: 0 0.75rem;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 1rem; */
+  /* margin-top: 0.75rem; */
+}
+
+/* 게임 이미지, 게임 이름이 포함된 a */
+a.game_link {
+  margin: 1.5rem 0.75rem;
+  width: 25%;
+}
+
+/* 게임 이미지를 감싸는 div 요소 */
+div.img_wrapper {
+  background-color: #4a4a4a;
+  width: 100%;
+  border-radius: 1rem;
+  aspect-ratio: 1.3; /* 이미지의 비율 */
+  margin-bottom: 1rem !important;
+  margin: auto;
+  overflow: hidden;
+}
+
+/* 게임 사진 */
+a.game_link img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; /* 이미지를 겉에 div 태그에 맞게 자름 */
+}
+
+/* 게임 이름 */
+span.game_name {
+  width: 100%;
+  height: 2rem;
+  background-color: white;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  div#contents {
+    width: calc(100% - 2rem);
+  }
+  div#contents div.game_box {
+    margin: 0 0.5rem;
+  }
+  div#contents div.game_box > a.game_link {
+    margin: 1rem 0.5rem;
+    width: 25%;
+  }
+}
