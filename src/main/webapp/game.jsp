@@ -13,7 +13,6 @@
 </head>
 <body>
 <%@ page import="java.sql.*, javax.sql.*, javax.naming.*, game.model.*, game.domain.*, java.util.*" %>
-<%! String idCheck; %>
 <%
 request.setCharacterEncoding("utf-8");
 	
@@ -60,7 +59,7 @@ List<GameDTO> gameList = gameDAO.getPopularGames();
 <%
 for(int i=0; i<gameList.size(); i++) {
 %>
-                        <a class="game_link" href="https://www.naver.com/">
+                        <a class="game_link" href="<%=gameList.get(i).getLink()%>">
                             <div class="img_wrapper">
                                 <img src="<%=gameList.get(i).getImage()%>"/>
                             </div>
@@ -72,7 +71,7 @@ for(int i=0; i<gameList.size(); i++) {
 if(gameList.size() < 4) {
 	for(int i=0; i<4-gameList.size(); i++) {
 %>
-                        <a class="game_link" href="https://www.google.com/">
+                        <a class="game_link" href="https://www.chelseafc.com/en">
                             <div class="img_wrapper">
                                 <img src="images/logo/logo.png"/>
                             </div>
