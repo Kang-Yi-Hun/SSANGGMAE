@@ -1,411 +1,412 @@
 @font-face {
-  font-family: "NeoDunggeunmo";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff")
-    format("woff");
-  font-weight: normal;
+    font-family: 'NeoDunggeunmo';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
+    font-weight: normal;
 }
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-:root {
-  --main-key-color: #ff4b4b;
-  --base-color: #e8e6e1;
-  --font-color: #4a4a4a;
-  --base-white: #fff;
-  --object-color: #00a3ff;
-  font-size: 16px;
+:root{
+    --main-key-color: #FF4B4B;
+    --base-color: #E8E6E1;
+    --font-color: #4A4A4A;
+    --base-white: #fff;
+    --object-color: #00A3FF;
+    font-size: 16px;
 }
 
-header {
-  width: 100%;
-  position: fixed;
-  background-color: #00000000;
-  backdrop-filter: blur(1rem);
-  transition: all 0.5;
-  z-index: 6;
+header{
+    width: 100%;
+    position: fixed;
+    background-color: #00000000;
+    backdrop-filter: blur(1rem);
+    transition: all 0.5;
+    z-index: 6;
 }
 
-a {
-  text-decoration: none;
-  color: var(--font-color);
+a{
+    text-decoration: none;
+    color: var(--font-color);
 }
 
 div#container > header > div#header-wrapper {
-  width: 100%;
-  min-width: 600px;
-  max-width: 96rem;
-  height: 10rem;
-  margin: 0 auto;
-  /* background-color: #dbdbdb; */
-  display: flex;
-  justify-content: space-between;
-  transition: all 0.6s;
+    width: 100%;
+    min-width: 600px;
+    max-width: 96rem;
+    height: 10.0rem;
+    margin: 0 auto;
+    /* background-color: #dbdbdb; */
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.6s;
 }
 
 /* 로고 스타일 */
-div#container > header > div#header-wrapper > div.logo-container {
-  margin: auto;
-  text-align: center;
-  width: 15%;
+div#container > header > div#header-wrapper > div.logo-container{
+    margin: auto;
+    text-align: center;
+    width: 15%;
 }
 
-div#container > header > div#header-wrapper > div.logo-container > img.logo {
-  width: 10rem;
-  transition: all 0.6s;
+div#container > header > div#header-wrapper > div.logo-container > img.logo{
+    width: 10.0rem;
+    transition: all 0.6s;
 }
 /* 로고 스타일 */
 
+
+
 /* 햄버거 */
-.hamburgerbar > ul {
-  display: none;
-  list-style: none;
-  line-height: 6rem;
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  margin: 0 auto;
+.hamburgerbar > ul{
+    display: none;
+    list-style: none;
+    line-height: 6.0rem;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    margin: 0 auto;
 }
-.hamburger {
-  margin-top: 5px;
-  height: 6px;
-  width: 30px;
-  border-radius: 20% / 90%;
-  background-color: #000000;
-  transition: 0.5s;
-  position: relative;
+.hamburger{
+    margin-top: 5px;
+    height: 6px;
+    width: 30px;
+    border-radius: 20% / 90%;
+    background-color: #000000;
+    transition: 0.5s;
+    position: relative;
 }
-.hamburgerbar > ul:hover li:nth-child(1) {
-  transform: translateY(10.5px) rotate(45deg);
+.hamburgerbar > ul:hover li:nth-child(1){
+    transform: translateY(10.5px) rotate(45deg);
 }
-.hamburgerbar > ul:hover li:nth-child(3) {
-  transform: translateY(-10.5px) rotate(-45deg);
+.hamburgerbar > ul:hover li:nth-child(3){
+    transform: translateY(-10.5px) rotate(-45deg);
 }
-.hamburgerbar > ul:hover li:nth-child(2) {
-  transform: translateX(-20px);
-  opacity: 0;
+.hamburgerbar > ul:hover li:nth-child(2){
+    transform: translateX(-20px);
+    opacity: 0;
 }
 /* 햄버거 */
+
+
 
 /* 네비게이션 스타일 */
-div#container > header > div#header-wrapper > div.nav-container {
-  display: flex;
-  align-items: center;
-  width: auto;
-  margin: 0 auto;
-  /* background-color: #fff; */
+div#container > header > div#header-wrapper > div.nav-container{
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin: 0 auto;
+    /* background-color: #fff; */
 }
 
-div#container > header > div#header-wrapper > div.nav-container > nav > ul {
-  list-style: none;
-  display: flex;
-  line-height: 6rem;
-  gap: 2rem;
+div#container > header > div#header-wrapper > div.nav-container > nav > ul{
+    list-style: none;
+    display: flex;
+    line-height: 6.0rem;
+    gap: 2.0rem;
 }
 
-div#container
-  > header
-  > div#header-wrapper
-  > div.nav-container
-  > nav
-  > ul
-  > li
-  > a:hover {
-  color: var(--main-key-color);
-  font-weight: 600;
+div#container > header > div#header-wrapper > div.nav-container > nav > ul > li > a:hover{
+    color: var(--main-key-color);
+    font-weight: 600;
 }
 /* 네비게이션 스타일 */
+
+
 
 /* 검색창 스타일 */
-.search-container {
-  width: 100%;
-  margin: 0 1rem;
-  display: flex;
-  justify-content: end;
-  align-items: center;
+.search-container{
+    width: 100%;
+    margin: 0 1rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
-.search-container > form {
-  width: 100%;
-  position: relative;
-  display: flex;
+.search-container > form{
+    width: 100%;
+    position: relative;
+    display: flex;
 }
 
-.search-container > form > input[type="text"] {
-  background-color: none;
-  border: none;
-  width: 100%;
-  border-radius: 30px 0px 0px 30px;
-  padding-left: 1rem;
+.search-container > form > input[type="text"]{
+    background-color: none;
+    border: none;
+    width: 100%;
+    border-radius: 30px 0px 0px 30px;
+    padding-left: 1.0rem;
 }
 
 .search-container > form > input[type="text"]::placeholder {
-  color: #aaa;
-  transition: color 0.3s ease;
+    color: #aaa;
+    transition: color 0.3s ease;
 }
 
 .search-container > form > input[type="text"]:focus {
-  outline: none;
+    outline: none;
 }
 
-#search-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0 50% 50% 0;
-  background-color: var(--base-white);
+#search-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: 2.0rem;
+    height: 2.0rem;
+    border-radius: 0 50% 50% 0;
+    background-color: var(--base-white);
 }
 
-.search-ikon {
-  width: 1rem;
-  height: 1rem;
+.search-ikon{
+    width: 1.0rem;
+    height: 1.0rem;
 }
 /* 검색창 스타일 */
 
+
+
 /* 위로가기 버튼 */
-#allow-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #4a4a4a;
-  opacity: 0.6;
-  position: fixed;
-  right: 5%;
-  bottom: 5%;
-  display: none;
-  text-align: center;
-  line-height: 60px;
-  cursor: pointer;
-  border: 1px solid #dbdbdb;
-}
-
-#allow-icon:hover {
-  opacity: 1;
-}
-
-#allow-icon.show {
-  display: block;
-}
-/* 위로가기 버튼 */
-
-/* section 스타일 */
-#section-container {
-  position: relative;
-  width: 100%;
-}
-
-.section {
-  position: relative;
-  width: 80%;
-  min-width: 600px;
-  margin: 0 auto;
-  height: 100vh;
-  /* background-color: #ff4b4b6e; */
-  align-items: center;
-}
-
-#section1 > div:first-child {
-  font-size: 5rem;
-  font-weight: 500;
-  font-family: "NeoDunggeunmo";
-  position: absolute;
-  top: 50%;
-  left: -5%;
-  transform: translate(0, -50%);
-  z-index: 5;
-  opacity: 0;
-  transition: all 1s;
-}
-
-#section1 > div:first-child > div {
-  color: var(--main-key-color);
-}
-
-#section2 > div:first-child {
-  font-size: 5rem;
-  font-weight: 500;
-  font-family: "NeoDunggeunmo";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  opacity: 0;
-  transition: all 0.5s;
-  text-align: center;
-}
-
-#section2 > div:first-child > div {
-  text-align: center;
-  color: var(--main-key-color);
-}
-
-.main-img {
-  width: 500px;
-  height: 500px;
-  background-color: #dbdbdb;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  right: 0;
-  text-align: center;
-  line-height: 500px;
-}
-/* section 스타일 */
-
-/* 배경 오브젝트 스타일 */
-.object-pixel {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: var(--object-color);
-}
-
-.main-item {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: red;
-  position: fixed;
-  top: 20%;
-  right: 38%;
-  z-index: 4;
-}
-
-.object-pixel:first-child {
-  position: absolute;
-  top: 20%;
-  left: 5%;
-  animation-name: 둥실둥실;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.object-pixel:nth-child(2) {
-  position: absolute;
-  top: 25%;
-  right: 5%;
-  animation-name: 둥실;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.object-pixel:nth-child(3) {
-  position: absolute;
-  top: 5%;
-  right: 20%;
-  animation-name: 둥실;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.object-pixel:nth-child(4) {
-  position: absolute;
-  top: 50%;
-  right: 30%;
-  animation-name: 둥실둥실;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.object-pixel:nth-child(5) {
-  position: absolute;
-  top: 70%;
-  right: 50%;
-  animation-name: 둥실;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-.object-pixel:nth-child(6) {
-  position: absolute;
-  top: 80%;
-  left: 6%;
-  animation-name: 둥실둥실;
-  animation-duration: 7s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-/* 배경 오브젝트 스타일 */
-
-/* 픽셀 모션 */
-@keyframes 둥실 {
-  0% {
-    transform: rotate(-15deg);
-  }
-  25% {
-    transform: rotate(20deg);
-    transform: translateY(5px);
-  }
-  50% {
-    transform: translateY(-15px);
-    transform: translateX(5px);
-  }
-  100% {
-    transform: rotate(15deg);
-    transform: translateY(10px);
-    transform: translateX(-5px);
-  }
-}
-
-@keyframes 둥실둥실 {
-  0% {
-    transform: translateY(5px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(5px);
-  }
-}
-/* 픽셀 모션 */
-
-@media (max-width: 768px) {
-  /* 폰트 사이즈 조절 */
-  :root {
-    font-size: 14px;
-  }
-
-  /* nav 조절 */
-  div#container > header > div#header-wrapper > div.nav-container > nav > ul {
+#allow-icon{
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background-color: #4A4A4A; 
+    opacity: 0.6;
+    position: fixed; 
+    right: 5%; 
+    bottom: 5%; 
     display: none;
     text-align: center;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    left: 0px;
-    top: 6rem;
-    background-color: #eee;
-    width: 100vw;
-    z-index: 1;
-  }
-
-  div#container
-    > header
-    > div#header-wrapper
-    > div.nav-container
-    > nav
-    > ul.active {
-    display: flex;
-  }
-
-  /* 햄버거 버튼 */
-  .hamburgerbar > ul {
-    display: block;
-  }
+    line-height: 60px;
+    cursor: pointer;
+    border: 1px solid #dbdbdb;
 }
+
+#allow-icon:hover{
+    opacity: 1;
+}
+
+#allow-icon.show{
+    display: block;
+}
+/* 위로가기 버튼 */
+
+
+
+/* section 스타일 */
+#section-container{
+    position: relative;
+    width: 100%;
+}
+
+.section{
+    position: relative;
+    width: 80%;
+    min-width: 600px;
+    margin: 0 auto;
+    height: 100vh;
+    /* background-color: #ff4b4b6e; */
+    align-items: center;
+}
+
+#section1 > div:first-child{
+    font-size: 5.0rem;
+    font-weight: 500;
+    font-family:'NeoDunggeunmo';
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    transform: translate(0, -50%);
+    z-index: 5;
+    opacity: 0;
+    transition: all 1s;
+}
+
+#section1 > div:first-child > div{
+    color: var(--main-key-color);
+}
+
+#section2 > div:first-child{
+    font-size: 5.0rem;
+    font-weight: 500;
+    font-family:'NeoDunggeunmo';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.5s;
+    text-align: center;
+}
+
+#section2 > div:first-child > div{
+    text-align: center;
+    color: var(--main-key-color);
+}
+
+.main-img{
+    width: 500px;
+    height: 500px;
+    background-color: #dbdbdb;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    right: 0;
+    text-align: center;
+    line-height: 500px;
+}
+/* section 스타일 */
+
+
+
+/* 배경 오브젝트 스타일 */
+.object-pixel{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: var(--object-color);
+}
+
+.main-item{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+    position: fixed;
+    top: 20%;
+    right: 38%;
+    z-index: 4;
+}
+
+.object-pixel:first-child{
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    animation-name: 둥실둥실;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+
+.object-pixel:nth-child(2){
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    animation-name: 둥실;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+
+.object-pixel:nth-child(3){
+    position: absolute;
+    top: 5%;
+    right: 20%;
+    animation-name: 둥실;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+
+.object-pixel:nth-child(4){
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    animation-name: 둥실둥실;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+
+.object-pixel:nth-child(5){
+    position: absolute;
+    top: 70%;
+    right: 50%;
+    animation-name: 둥실;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+
+.object-pixel:nth-child(6){
+    position: absolute;
+    top: 80%;
+    left: 6%;
+    animation-name: 둥실둥실;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate-reverse;
+}
+/* 배경 오브젝트 스타일 */
+
+/* 픽셀 모션 */
+@keyframes 둥실{
+    0%{
+        transform: rotate(-15deg);
+    }
+    25%{
+        transform: rotate(20deg);
+        transform: translateY(5px);
+    }
+    50%{
+        transform: translateY(-15px);
+        transform: translateX(5px);
+    }
+    100%{
+        transform: rotate(15deg);
+        transform: translateY(10px);
+        transform: translateX(-5px);
+    }
+}
+
+@keyframes 둥실둥실{
+    0%{
+        transform: translateY(5px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(5px);
+    }
+}
+/* 픽셀 모션 */
+
+
+
+
+@media (max-width: 768px) {
+    /* 폰트 사이즈 조절 */
+    :root{
+        font-size: 14px;
+    }
+
+    /* nav 조절 */
+    div#container > header > div#header-wrapper > div.nav-container > nav > ul {
+        display: none;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        left: 0px;
+        top: 6.0rem;
+        background-color: #eee;
+        width: 100vw;
+        z-index: 1;
+    }
+
+    div#container > header > div#header-wrapper > div.nav-container > nav > ul.active {
+        display: flex;
+    }
+
+    /* 햄버거 버튼 */
+    .hamburgerbar > ul{
+        display: block;
+        
+    }
+  }

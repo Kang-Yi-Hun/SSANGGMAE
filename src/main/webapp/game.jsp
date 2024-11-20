@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/body.css">
 </head>
-
 <body>
+<%@ page import="java.sql.*, javax.sql.*, javax.naming.*, game.model.*, game.domain.*, java.util.*" %>
+<%! String idCheck; %>
+<%
+request.setCharacterEncoding("utf-8");
+	
+GameDAO gameDAO = new GameDAO_imple();
+
+List<GameDTO> gameList = gameDAO.getPopularGames();
+%>
     <div id="container">
         <header>
             <div id="header-wrapper">
@@ -30,11 +39,14 @@
         </header>
 
         <!-- 가상의 높이를 준 것이다 -->
+        <!-- 가상의 높이를 준 것이다 -->
         <div id="main">
 
             <div id="sidebar">
-                <button type="button">점메추</button>
-                <button type="button">게임등록하기</button>
+                <div id="button_box">
+                    <button type="button">점메추</button>
+                    <button type="button">게임등록하기</button>
+                </div>
             </div>
 
 
@@ -42,74 +54,76 @@
             <div id="contents">
                 <!-- div#main 부터 게임상세페이지 내용 -->
                 <div id="game_top">
-
+                    
                     <div id="header">인기게임</div>
-
                     <div class="game_box">
+<%
+for(int i=0; i<gameList.size(); i++) {
+%>
                         <a class="game_link" href="https://www.naver.com/">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="<%=gameList.get(i).getImage()%>"/>
                             </div>
-                            <span class="game_name">게임이름1</span>
+                            <span class="game_name"><%=gameList.get(i).getTitle()%></span>
                         </a>
+<%
+}
+
+if(gameList.size() < 4) {
+	for(int i=0; i<4-gameList.size(); i++) {
+%>
                         <a class="game_link" href="https://www.google.com/">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="images/logo/logo.png"/>
                             </div>
-                            <span class="game_name">게임이름2</span>
+                            <span class="game_name">등록된 게임이 없습니다</span>
                         </a>
-                        <a class="game_link" href="https://www.youtube.com/">
-                            <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
-                            </div>
-                            <span class="game_name">게임이름3</span>
-                        </a>
-                        <a class="game_link" href="https://www.chelseafc.com/en">
-                            <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
-                            </div>
-                            <span class="game_name">게임이름4</span>
-                        </a>
+<%
+	}
+}
+%>
                     </div>
                 </div>
-
+        
                 <div id="game_bottom">
-
+        
                     <div id="header">최신등록게임</div>
-
+        
                     <div class="game_box">
                         <a class="game_link" href="https://www.naver.com/">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="images/logo/logo.png"/>
                             </div>
                             <span class="game_name">게임이름1</span>
                         </a>
                         <a class="game_link" href="https://www.google.com/">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="images/logo/logo.png"/>
                             </div>
                             <span class="game_name">게임이름2</span>
                         </a>
                         <a class="game_link" href="https://www.youtube.com/">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="images/logo/logo.png"/>
                             </div>
                             <span class="game_name">게임이름3</span>
                         </a>
                         <a class="game_link" href="https://www.chelseafc.com/en">
                             <div class="img_wrapper">
-                                <img src="images/logo/logo.png" />
+                                <img src="images/logo/logo.png"/>
                             </div>
                             <span class="game_name">게임이름4</span>
                         </a>
                     </div>
-
+        
                 </div>
-            </div>
+           </div>
 
 
         </div>
         <!-- 가상의 높이를 준 것이다 -->
+        <!-- 가상의 높이를 준 것이다 -->
+
         <footer>
             <div class="heading">
                 <a href="#"><img src="./images/logo/footerlogo.png"></a>
@@ -130,12 +144,9 @@
                 <div class="info">
                     <span class="title">Social Media</span>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
                     </p>
                     <div class="social">
                         <a href="#"><i class="bi bi-facebook"></i></a>
@@ -149,39 +160,34 @@
                 Copyright ⓒ kyh kkb ksj kjs
             </div>
         </footer>
-
-        <a href="#">
-            <div id="allow-icon"><img src="./images/ikon/allow.png" width="20"></div>
-        </a>
+        
+        <a href="#"><div id="allow-icon"><img src="./images/ikon/allow.png" width="20"></div></a>
     </div>
 
     <!-- 제이쿼리 사용 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-
+        
         let nav = $('div#container > header > div#header-wrapper > div.nav-container > nav > ul');
 
         // 위치에 따른 헤더 스타일 조정 //
         $(window).on('scroll', () => {
-
-            if ($(window).scrollTop() != 0) {
+            
+            if($(window).scrollTop() != 0){
                 $('.logo').css({
                     width: '5.0rem'
                 });
                 $('div#header-wrapper').css('height', '5.0rem');
-                $('header').css('background-color', '#F8F0E4cc');
                 $('div.nav-container > nav > ul').css('line-height', '5.0rem');
                 nav.css('top', '5.0rem');
 
                 $('#allow-icon').fadeIn('#allow-icon.show'); // 위로가기 버튼 등장
             };
-            if ($(window).scrollTop() == 0) {
+            if($(window).scrollTop() == 0){
                 $('.logo').css({
                     width: '10.0rem'
                 });
                 $('div#header-wrapper').css('height', '10.0rem');
-                $('header').css('background-color', '#00000000');
                 $('div.nav-container > nav > ul').css('line-height', '6.0rem');
                 nav.css('top', '6.0rem');
 
@@ -195,11 +201,11 @@
         // 햄버거 및 드롭다운 메뉴 생성 //
         $(document).ready(function () {
 
-            $('#hamburger').on('click', function () {
+            $('#hamburger').on('click', function(){
                 nav.toggleClass('active').slideToggle();
             });
 
-            $(window).resize(function () {
+            $(window).resize(function() {
                 if (window.innerWidth > 768) {
                     nav.show();
                 } else {
@@ -212,5 +218,4 @@
 
     </script>
 </body>
-
 </html>
