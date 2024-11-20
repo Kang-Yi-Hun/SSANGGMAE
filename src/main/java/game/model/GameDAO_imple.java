@@ -38,13 +38,14 @@ public class GameDAO_imple implements GameDAO {
 					   + " from TBL_GAME G join TBL_GAME_CATEGORY GC "
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
-					   + " on GC.fk_category_no = C.pk_category_no ";
+					   + " on GC.fk_category_no = C.pk_category_no"
+					   + " where rownum <= 4 ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery(); // sql문 실행
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				
 				GameDTO gameDTO = new GameDTO();
 				
