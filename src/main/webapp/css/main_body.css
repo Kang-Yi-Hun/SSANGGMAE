@@ -4,7 +4,7 @@
     width: 100%;
     /* background-color: #172c52; */
     background-color: #252525;
-    background-image: url(../images/object/별배경.png);
+    /* background-image: url(../images/object/별배경.png); */
     background-size: 1000px;
     transition: all 1s;
 }
@@ -45,6 +45,7 @@
     font-size: 5.0rem;
     font-weight: 400;
     height: 500px;
+    line-height: 500px;
     font-family:'NeoDunggeunmo';
     position: sticky;
     top: 50%;
@@ -63,10 +64,12 @@
 }
 
 .section2-item{
+    position: relative;
+    z-index: 3;
     width: 500px;
     height: 500px;
     background-color: #dbdbdb;
-    border: 1px solid red;
+    border: 0px solid red;
     border-radius: 10px;
     position: sticky;
     top: 50%;
@@ -74,6 +77,19 @@
     transform: translate(0%, -50%);
 }
 
+#section3 > div:first-child{
+    font-size: 5.0rem;
+    font-weight: 500;
+    font-family:'NeoDunggeunmo';
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: -5%;
+    transform: translate(0, -50%);
+    z-index: 5;
+    opacity: 0;
+    transition: all 1s;
+}
 
 
 .main-img{
@@ -81,6 +97,7 @@
     height: 500px;
     background-color: #dbdbdb;
     position: absolute;
+    z-index: 3;
     top: 50%;
     transform: translate(0, -50%);
     right: 0;
@@ -131,6 +148,8 @@
 }
 
 .img{
+    position: relative;
+    z-index: 3;
     width: 280px;
     height: 280px;
     border-radius: 10px;
@@ -221,7 +240,7 @@
 
 .object-pixel:nth-child(5){
     position: absolute;
-    top: 70%;
+    top: 56%;
     right: 50%;
     background-image: url(../images/object/운석.png);
     background-size: cover;
@@ -233,8 +252,8 @@
 
 .object-pixel:nth-child(6){
     position: absolute;
-    top: 80%;
-    left: 6%;
+    top: 60%;
+    right: 6%;
     background-image: url(../images/object/행성.png);
     background-size: cover;
     filter: blur(2px);
@@ -244,6 +263,41 @@
     animation-direction:alternate-reverse;
 }
 /* 배경 오브젝트 스타일 */
+
+
+
+div.star {
+    position: fixed;
+    background-color: #F2D377;
+}
+div#shooting_star {
+    position: fixed;
+    background-color: #F2D377;
+    transition: all 1s;
+    animation: shooting_star 1s;
+    box-shadow: 0px 0px 10px 1px #F2D377;
+}
+@keyframes shooting_star {
+/* 효과를 동작시간 동안 0 ~ 1까지 */
+    0% {
+        width: 0.4rem;
+        height: 0.4rem;
+        transform: rotate(20deg);
+    }
+    50% {
+        width: 0.7rem;
+        height: 0.7rem;
+        opacity: 1;
+    }
+    100% {
+        width: 0.2rem;
+        height: 0.2rem;
+        opacity: 0;
+        transform: rotate(100deg);
+    }
+}
+
+
 
 /* 픽셀 모션 */
 @keyframes 둥실{
