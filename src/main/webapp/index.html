@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
+    <!-- oncontextmenu="return false" ondragstart="return false" onselectstart="return false" -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쌍겜추</title>
     <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/main_body.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
@@ -13,7 +15,9 @@
         <header>
             <div id="header-wrapper">
                 <div class="logo-container">
-                    <img src="./images/logo/logo.png" alt="로고" class="logo">
+                    <a href="game.jsp">
+                        <img src="./images/logo/logo.png" alt="로고" class="logo">
+                    </a>
                 </div>
                 <div class="nav-container">
                     <nav>
@@ -25,7 +29,7 @@
                             </ul>
                         </div>
                         <ul style="display: flex;">
-                            <li><a href="game.jsp">모든게임</a></li>
+                            <li><a href="http://192.168.0.197:5500/JQueryStudy/src/main/webapp/project_%20engraft/game.html">모든게임</a></li>
                             <li><a href="#">게임추가</a></li>
                             <li><a href="#">회사소개</a></li>
                             <li><a href="#">점메추</a></li>
@@ -42,20 +46,58 @@
                 </div>
             </div>
         </header>
+        <!-- header -->
 
         <!-- <div style="height: 2000px; width: 80%; margin: 0 auto; background-color: antiquewhite; min-width: 600px;"> -->
             <!-- 가상의 높이를 준 것이다 -->
         <!-- </div> -->
 
         <div id="section-container">
+            <!-- 꾸미기 용도 오브젝트 -->
+            <div class="object-pixel"></div>
+            <div class="object-pixel"></div>
+            <div class="object-pixel"></div>
+            <div class="object-pixel"></div>
+            <div class="object-pixel"></div>
+            <div class="object-pixel"></div>
+
+            <div class="main-item"></div> <!-- 비행기 -->
+            <!-- 꾸미기 용도 오브젝트 -->
             <div id="section1"class="section">
-                <div>모두 함께 즐기는 쌍겜추</div>
+                <div>모두 함께 즐기는 <div>쌍겜추</div></div>
+                <div class="main-img">main-img</div>
 
             </div>
-            <div id="section2"class="section">들키지 않았던 게임들!</div>
-            <div id="section3"class="section">section3</div>
+
+            <!-- 방정식 캐러셀 -->
+            <div id="equation-container">
+                <div class="topimg">
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                </div>
+                <div class="bottomimg">
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                </div>
+            </div>
+            <!-- 방정식 캐러셀 -->
+
+        
+            <div id="section2"class="section">
+                <div>들키지 않았던 <span>게임들!</span></div>
+                
+                <div class="section2-item"></div>
+                <div class="section2-item"></div>
+                <div class="section2-item"></div>
+            </div>
+            <div id="section3"class="section">쌍용.게임.추천</div>
             <div id="section4"class="section">section4</div>
         </div>
+        <!-- contents -->
         
 
         <footer>
@@ -90,12 +132,12 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom"> 
                 Copyright ⓒ kyh kkb ksj kjs
             </div>
         </footer>
-        
-        <a href="#"><div id="allow-icon"><img src="./images/ikon/allow.png" width="20"></div></a>
+        <!-- footer -->
+        <a href="#"><div id="allow-icon"><img src="./images/ikon/allow.png" width="20"></div></a><!-- 귀요미 위로가기 버튼 -->
     </div>
 
     <!-- 제이쿼리 사용 -->
@@ -104,9 +146,17 @@
         
         let nav = $('div#container > header > div#header-wrapper > div.nav-container > nav > ul');
 
-        // 위치에 따른 헤더 스타일 조정 //
-        $(window).on('scroll', () => {
+        // 첫 섹션 타이틀 등장 //
+        $('#section1 > div:first-child').css({
+            opacity: "1",
+            left: "0%"
+        });
+        // 첫 섹션 타이틀 등장 //
+
+        $(window).scroll(()=>{
+            const scrollTop = $(window).scrollTop();
             
+            // 위치에 따른 헤더 스타일 조정 //
             if($(window).scrollTop() != 0){
                 $('.logo').css({
                     width: '5.0rem',
@@ -117,6 +167,12 @@
                 nav.css('top', '5.0rem');
 
                 $('#allow-icon').fadeIn('#allow-icon.show'); // 위로가기 버튼 등장
+
+                $('.main-item').css({ // 비행기 스타일
+                    right: '38%',
+                    top: '40%',
+                    transform: 'rotate(-180deg)'
+                });
             };
             if($(window).scrollTop() == 0){
                 $('.logo').css({
@@ -129,9 +185,93 @@
 
                 $('#allow-icon').fadeOut('#allow-icon.show'); // 위로가기 버튼 퇴장
             };
+            // 위치에 따른 헤더 스타일 조정 //
 
+            
+
+
+            // 방정식 캐러셀 시작 //
+            let container = $('#equation-container').offset().top;
+            // console.log(container);
+            // 방정식 캐러셀 시작위치
+
+            let nextsection = $('#section2').offset().top;
+            // console.log(nextsection);
+            // 방정식 캐러셀 끝 위치
+
+            const 높이 = $(window).scrollTop();
+            // console.log(높이);
+            // 스크롤 할 때마다의 사용자 스크롤 위치
+
+            let y = (200 / (nextsection - container)) * 높이 +(-(200 / (nextsection - container)) * container);
+            let y_2 = (200 / (nextsection - container)) * (높이 - container);
+
+            $('.topimg').css('left', y);
+            $('.bottomimg').css('right', y_2);
+
+
+            let section2Height = $('#section2').offset().top;
+
+            let 투명도 = (-1/900) * 높이 + (23/9); // 1600 - 2300
+            let 사이즈 = (-0.00014) * 높이 + (1.22857);
+
+            $('#section2 > div:nth-child(2)').eq(0).css({
+                'opacity' : `${투명도}`,
+                'transform' : `scale(${사이즈})`
+            });
+
+            // 방정식 캐러셀 끝 //
+
+
+
+
+            // 두번째 섹션 타이틀 등장 //
+            if(scrollTop > $('#section2').offset().top-200){
+                $('#section2 > div:first-child').css({
+                    opacity: "1",
+                    top: "45%"
+                });
+            }
+            // 두번째 섹션 타이틀 등장 //
+            // 두번째 섹션 비행기 모션 //
+            if(scrollTop > $('#section2').offset().top-500){
+                $('.main-item').css({ // 비행기 스타일
+                    right: '48%',
+                    top: '40%'
+                });
+            }
+            // 두번째 섹션 비행기 모션 //
+
+
+
+            // 세번째 섹션 배경화면 모션 //
+            if(scrollTop > $('#section3').offset().top-300){
+                $('#section-container').css({ 
+                    'background-color' : '#fff'
+                });
+                $('header').css({
+                    'background-color': '#e8e6e1b9'
+                });
+                $('a').css({
+                    'color' : '#000'
+                });
+            }
+            if(scrollTop < $('#section3').offset().top-300){
+                $('#section-container').css({
+                    'background-color' : ''
+                });
+                $('header').css({
+                    'background-color': ''
+                });
+                $('a').css({
+                    'color' : ''
+                });
+            }
+            // 세번째 섹션 배경화면 모션 //
+
+            
         });
-        // 위치에 따른 헤더 스타일 조정 //
+        
 
 
         // 햄버거 및 드롭다운 메뉴 생성 //
