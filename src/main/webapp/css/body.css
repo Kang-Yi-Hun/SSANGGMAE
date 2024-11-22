@@ -133,13 +133,23 @@ div#contents div.game_box > .game_link > div.img_wrapper {
 		0.6rem 0.3rem,
 		0.6rem 0%
 	);
+	transition: 0.2s ease;	/* 시진 - hover 게임사진 커지게 하기 */
 }
+
+/* 시진 -게임사진 커지게 */
+/* ----------------------------------------- */
+div#contents div.game_box > .game_link > div.img_wrapper:hover { 
+transform: scale(1.1);
+}
+/* ----------------------------------------- */
+
 /* 게임 사진 */
 div#contents div.game_box > .game_link img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover; /* 이미지를 겉에 div 태그에 맞게 자름 */
 }
+
 /* 게임 이름 */
 div#contents div.game_box > .game_link > span.game_name {
 	width: 100%;
