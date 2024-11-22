@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* 전체 배경색상 및 전체 폰트 지정 */
 body {
-	background-color: #252525 ;
+	background-color: #252525;
 	font-size: 1.25rem;
-	font-family:'NeoDunggeunmo';
+	font-family: "NeoDunggeunmo";
 }
 
 #main {
@@ -11,7 +11,7 @@ body {
 	min-width: 600px;
 	max-width: 96rem; /* 1920의 80% */
 	margin: 0 auto;
-	padding: 11.0rem 0; /* 헤더 사이즈 + 1rem */
+	padding: 11rem 0; /* 헤더 사이즈 + 1rem */
 	display: flex;
 	background-color: #252525;
 }
@@ -30,7 +30,7 @@ div#sidebar > div#button_box {
 /* 사이드 바 버튼 */
 div#sidebar > div#button_box > button {
 	/* 폰트 */
-	font-family:'NeoDunggeunmo';
+	font-family: "NeoDunggeunmo";
 	font-size: 16pt;
 
 	/* 크기 및 위치 */
@@ -41,10 +41,31 @@ div#sidebar > div#button_box > button {
 	/* 디자인 */
 	border: none;
 	color: white;
-	background-color: #3b3b3b;;
+	background-color: #3b3b3b;
 
 	/* 모서리 픽셀 효과 */
-	clip-path: polygon(calc(100% - 0.4rem) 0%, calc(100% - 0.4rem) 0.2rem, calc(100% - 0.2rem) 0.2rem, calc(100% - 0.2rem) 0.4rem, 100% 0.4rem, 100% calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.2rem), calc(100% - 0.4rem) calc(100% - 0.2rem), calc(100% - 0.4rem) 100%, 0.4rem 100%, 0.4rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.4rem), 0% calc(100% - 0.4rem), 0% 0.4rem, 0.2rem 0.4rem, 0.2rem 0.2rem, 0.4rem 0.2rem, 0.4rem 0%);
+	clip-path: polygon(
+		calc(100% - 0.4rem) 0%,
+		calc(100% - 0.4rem) 0.2rem,
+		calc(100% - 0.2rem) 0.2rem,
+		calc(100% - 0.2rem) 0.4rem,
+		100% 0.4rem,
+		100% calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) 100%,
+		0.4rem 100%,
+		0.4rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.4rem),
+		0% calc(100% - 0.4rem),
+		0% 0.4rem,
+		0.2rem 0.4rem,
+		0.2rem 0.2rem,
+		0.4rem 0.2rem,
+		0.4rem 0%
+	);
 }
 div#sidebar > div#button_box > button:hover {
 	cursor: pointer;
@@ -61,13 +82,12 @@ div#contents {
 div#contents div#header {
 	margin: 0 2.5rem;
 	font-size: 1.5rem;
-	color: #F2D377;
+	color: #f2d377;
 	display: flex;
 	align-items: left;
 
 	/* 모서리 픽셀 효과 */
 	/* clip-path: polygon(calc(100% - 0.4rem) 0%, calc(100% - 0.4rem) 0.2rem, calc(100% - 0.2rem) 0.2rem, calc(100% - 0.2rem) 0.4rem, 100% 0.4rem, 100% calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.2rem), calc(100% - 0.4rem) calc(100% - 0.2rem), calc(100% - 0.4rem) 100%, 0.4rem 100%, 0.4rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.4rem), 0% calc(100% - 0.4rem), 0% 0.4rem, 0.2rem 0.4rem, 0.2rem 0.2rem, 0.4rem 0.2rem, 0.4rem 0%); */
-
 }
 /* 사진 및 게임이름 담을 박스 */
 div#contents div.game_box {
@@ -77,12 +97,13 @@ div#contents div.game_box {
 	justify-content: space-between;
 	align-items: center;
 }
-div#contents div.game_box > a.game_link {
+div#contents div.game_box > .game_link {
+	cursor : pointer;
 	margin: 1.5rem 0.75rem;
 	width: 25%;
 }
 
-div#contents div.game_box > a.game_link > div.img_wrapper {
+div#contents div.game_box > .game_link > div.img_wrapper {
 	background-color: #3b3b3b;
 	width: 100%;
 	/* border-radius: 1rem; */
@@ -90,16 +111,37 @@ div#contents div.game_box > a.game_link > div.img_wrapper {
 	margin-bottom: 1rem !important;
 	margin: auto;
 	overflow: hidden;
-	clip-path: polygon(calc(100% - 0.6rem) 0%, calc(100% - 0.6rem) 0.3rem, calc(100% - 0.3rem) 0.3rem, calc(100% - 0.3rem) 0.6rem, 100% 0.6rem, 100% calc(100% - 0.6rem), calc(100% - 0.3rem) calc(100% - 0.6rem), calc(100% - 0.3rem) calc(100% - 0.3rem), calc(100% - 0.6rem) calc(100% - 0.3rem), calc(100% - 0.6rem) 100%, 0.6rem 100%, 0.6rem calc(100% - 0.3rem), 0.3rem calc(100% - 0.3rem), 0.3rem calc(100% - 0.6rem), 0% calc(100% - 0.6rem), 0% 0.6rem, 0.3rem 0.6rem, 0.3rem 0.3rem, 0.6rem 0.3rem, 0.6rem 0%);
+	clip-path: polygon(
+		calc(100% - 0.6rem) 0%,
+		calc(100% - 0.6rem) 0.3rem,
+		calc(100% - 0.3rem) 0.3rem,
+		calc(100% - 0.3rem) 0.6rem,
+		100% 0.6rem,
+		100% calc(100% - 0.6rem),
+		calc(100% - 0.3rem) calc(100% - 0.6rem),
+		calc(100% - 0.3rem) calc(100% - 0.3rem),
+		calc(100% - 0.6rem) calc(100% - 0.3rem),
+		calc(100% - 0.6rem) 100%,
+		0.6rem 100%,
+		0.6rem calc(100% - 0.3rem),
+		0.3rem calc(100% - 0.3rem),
+		0.3rem calc(100% - 0.6rem),
+		0% calc(100% - 0.6rem),
+		0% 0.6rem,
+		0.3rem 0.6rem,
+		0.3rem 0.3rem,
+		0.6rem 0.3rem,
+		0.6rem 0%
+	);
 }
 /* 게임 사진 */
-div#contents div.game_box > a.game_link img {
+div#contents div.game_box > .game_link img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover; /* 이미지를 겉에 div 태그에 맞게 자름 */
 }
 /* 게임 이름 */
-div#contents div.game_box > a.game_link > span.game_name {
+div#contents div.game_box > .game_link > span.game_name {
 	width: 100%;
 	height: 2rem;
 	background-color: #3b3b3b;
@@ -109,8 +151,28 @@ div#contents div.game_box > a.game_link > span.game_name {
 	align-items: center;
 	justify-content: center;
 	/* border-radius: 0.5rem; */
-	clip-path: polygon(calc(100% - 0.4rem) 0%, calc(100% - 0.4rem) 0.2rem, calc(100% - 0.2rem) 0.2rem, calc(100% - 0.2rem) 0.4rem, 100% 0.4rem, 100% calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.4rem), calc(100% - 0.2rem) calc(100% - 0.2rem), calc(100% - 0.4rem) calc(100% - 0.2rem), calc(100% - 0.4rem) 100%, 0.4rem 100%, 0.4rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.2rem), 0.2rem calc(100% - 0.4rem), 0% calc(100% - 0.4rem), 0% 0.4rem, 0.2rem 0.4rem, 0.2rem 0.2rem, 0.4rem 0.2rem, 0.4rem 0%);
-
+	clip-path: polygon(
+		calc(100% - 0.4rem) 0%,
+		calc(100% - 0.4rem) 0.2rem,
+		calc(100% - 0.2rem) 0.2rem,
+		calc(100% - 0.2rem) 0.4rem,
+		100% 0.4rem,
+		100% calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) 100%,
+		0.4rem 100%,
+		0.4rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.4rem),
+		0% calc(100% - 0.4rem),
+		0% 0.4rem,
+		0.2rem 0.4rem,
+		0.2rem 0.2rem,
+		0.4rem 0.2rem,
+		0.4rem 0%
+	);
 }
 
 @media (max-width: 768px) {
@@ -120,7 +182,7 @@ div#contents div.game_box > a.game_link > span.game_name {
 	div#contents div.game_box {
 		margin: 0 0.5rem;
 	}
-	div#contents div.game_box > a.game_link {
+	div#contents div.game_box > .game_link {
 		margin: 1rem 0.5rem;
 		width: 25%;
 	}

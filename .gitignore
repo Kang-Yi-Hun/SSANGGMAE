@@ -1,2 +1,4 @@
 /build/
 /.settings/
+/.metadata/
+src/main/java/common/Constants.java
