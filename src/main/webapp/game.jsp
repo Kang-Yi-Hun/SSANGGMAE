@@ -12,7 +12,6 @@
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/body.css">
-			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/game_details.css">
 		</head>
 
 		<body>
@@ -57,7 +56,7 @@
 
 								<!-- forEach문으로 var는 하나의 item, items는 List<gameDTO>인 gameList를 말합니다. 따라서 game은 하나의 gameDTO입니다. -->
 								<c:forEach var="game" items="${gameList}">
-									<div class="game_link" onclick="gameDetails(1);">
+									<div class="game_link" onclick="gameDetails(${game.getPkGameNo()});">
 										<div class="img_wrapper">
 											<img src="${game.getImage()}" />
 										</div>
@@ -85,23 +84,23 @@
 							<div id="header">최신등록게임</div>
 
 							<div class="game_box">
-								<a class="game_link" href="https://www.naver.com/">
+								<div class="game_link">
 									<div class="img_wrapper">
 										<img src="images/logo/logo.png" />
 									</div> <span class="game_name">게임이름1</span>
-								</a> <a class="game_link" href="https://www.google.com/">
+								</div> <div class="game_link">
 									<div class="img_wrapper">
 										<img src="images/logo/logo.png" />
 									</div> <span class="game_name">게임이름2</span>
-								</a> <a class="game_link" href="https://www.youtube.com/">
+								</div> <div class="game_link">
 									<div class="img_wrapper">
 										<img src="images/logo/logo.png" />
 									</div> <span class="game_name">게임이름3</span>
-								</a> <a class="game_link" href="https://www.chelseafc.com/en">
+								</div> <div class="game_link">
 									<div class="img_wrapper">
 										<img src="images/logo/logo.png" />
 									</div> <span class="game_name">게임이름4</span>
-								</a>
+								</div>
 							</div>
 
 						</div>
@@ -200,7 +199,10 @@
 				// 햄버거 및 드롭다운 메뉴 생성 //
 
 				function gameDetails(gameNo) {
-					console.log(gameNo);
+					$("body").css({
+						'overflow': 'hidden'
+					});
+
 					$.ajax({
 						url: 'SSANGGMAE/game_details.do',
 						data: { gameNumber: gameNo },
@@ -209,8 +211,7 @@
 						}
 					});
 				}
-
-
+			
 
 			</script>
 			<div id="game-detail-container"></div>
