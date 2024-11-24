@@ -23,7 +23,7 @@ header{
     width: 100%;
     position: fixed;
     background-color: #00000000;
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(0.5rem);
     transition: all 0.5;
     z-index: 6;
 }
@@ -53,7 +53,8 @@ div#container > header > div#header-wrapper > div.logo-container{
 }
 
 div#container > header > div#header-wrapper > div.logo-container > img.logo{
-    width: 10.0rem;
+    width: 6.0rem;
+	margin-top: 0.7rem;
     transition: all 0.6s;
 }
 /* 로고 스타일 */

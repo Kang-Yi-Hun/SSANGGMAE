@@ -12,6 +12,7 @@
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/body.css">
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star_background.css">
 		</head>
 
 		<body>
@@ -21,7 +22,7 @@
 				<header>
 					<div id="header-wrapper">
 						<div class="logo-container">
-							<img src="./images/logo/logo.png" alt="로고" class="logo">
+							<img src="./images/logo/logo_red_white.png" alt="로고" class="logo">
 						</div>
 						<div class="search-container">
 							<form>
@@ -40,7 +41,7 @@
 					<div id="sidebar">
 						<div id="button_box">
 							<button type="button">점메추</button>
-							<button type="button">게임등록하기</button>
+							<button type="button" onclick="location.href='${pageContext.request.contextPath}/game_register';">게임등록하기</button>
 						</div>
 					</div>
 
@@ -67,9 +68,9 @@
 								<!-- if는 조건문입니다. test 안 "" 내부에 조건문을 넣으세요 -->
 								<c:if test="${gameList.size() < 4}">
 									<c:forEach begin="0" end="${3 - gameList.size()}" step="1" var="i">
-										<div class="game_link" href="https://www.chelseafc.com/en">
+										<div class="game_link" onclick="location.href='${pageContext.request.contextPath}/game_register';">
 											<div class="img_wrapper">
-												<img src="images/logo/logo.png" />
+												<img src="images/logo/logo_white_artboard.png" />
 											</div>
 											<span class="game_name">등록된 게임이 없습니다</span>
 										</div>
@@ -86,19 +87,19 @@
 							<div class="game_box">
 								<div class="game_link">
 									<div class="img_wrapper">
-										<img src="images/logo/logo.png" />
+										<img src="images/logo/logo_white_artboard.png" />
 									</div> <span class="game_name">게임이름1</span>
 								</div> <div class="game_link">
 									<div class="img_wrapper">
-										<img src="images/logo/logo.png" />
+										<img src="images/logo/logo_white_artboard.png" />
 									</div> <span class="game_name">게임이름2</span>
 								</div> <div class="game_link">
 									<div class="img_wrapper">
-										<img src="images/logo/logo.png" />
+										<img src="images/logo/logo_white_artboard.png" />
 									</div> <span class="game_name">게임이름3</span>
 								</div> <div class="game_link">
 									<div class="img_wrapper">
-										<img src="images/logo/logo.png" />
+										<img src="images/logo/logo_white_artboard.png" />
 									</div> <span class="game_name">게임이름4</span>
 								</div>
 							</div>
@@ -147,7 +148,7 @@
 			</div>
 
 			<!-- 제이쿼리 사용 -->
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 			<script>
 
 				let nav = $('div#container > header > div#header-wrapper > div.nav-container > nav > ul');
@@ -157,9 +158,11 @@
 
 					if ($(window).scrollTop() != 0) {
 						$('.logo').css({
-							width: '5.0rem'
+							'width': '4.0rem',
+							'margin-top': '0.4rem'
 						});
 						$('div#header-wrapper').css('height', '5.0rem');
+						$('header').css('backdrop-filter', 'blur(1rem)');
 						$('div.nav-container > nav > ul').css('line-height', '5.0rem');
 						nav.css('top', '5.0rem');
 
@@ -167,11 +170,13 @@
 					};
 					if ($(window).scrollTop() == 0) {
 						$('.logo').css({
-							width: '10.0rem'
+							'width': '',
+							'margin-top': ''
 						});
-						$('div#header-wrapper').css('height', '10.0rem');
-						$('div.nav-container > nav > ul').css('line-height', '6.0rem');
-						nav.css('top', '6.0rem');
+						$('div#header-wrapper').css('height', '');
+						$('header').css('backdrop-filter', '');
+						$('div.nav-container > nav > ul').css('line-height', '');
+						nav.css('top', '');
 
 						$('#allow-icon').fadeOut('#allow-icon.show'); // 위로가기 버튼 퇴장
 					};
@@ -204,17 +209,24 @@
 					});
 
 					$.ajax({
-						url: 'SSANGGMAE/game_details.do',
+						url: '${pageContext.request.contextPath}/game_details',
 						data: { gameNumber: gameNo },
 						success: function (response) {
 							$('#game-detail-container').html(response);
 						}
 					});
 				}
-			
+				
+				// 게시글 등록 완료 후 게시글 보여주기
+				if("${sessionScope.gameNumber}" != ""){
+					alert('게임 등록이 완료되었습니다.');
+					gameDetails(${sessionScope.gameNumber});
+				}
 
 			</script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/js/star_background.js"></script>
 			<div id="game-detail-container"></div>
+		<c:remove var="gameNumber" scope="session" /> <!-- 세션 삭제 -->
 
 		</body>
 

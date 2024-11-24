@@ -68,6 +68,7 @@ div#sidebar > div#button_box > button {
 	);
 }
 div#sidebar > div#button_box > button:hover {
+	color: #f2d377;
 	cursor: pointer;
 }
 
@@ -75,7 +76,9 @@ div#sidebar > div#button_box > button:hover {
 div#contents {
 	min-width: calc(600px - 2rem); /* 양옆 마진 2rem */
 	margin: 0 1rem 0 0.5rem;
-	background-color: #252525;
+	/* background-color: #252525; */
+	border-radius: 0.5rem;
+	backdrop-filter : blur(0.5rem);
 }
 
 /* 게임목록 헤더 */
