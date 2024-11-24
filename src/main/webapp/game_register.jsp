@@ -382,7 +382,7 @@ form[name='register_form'] button[type='submit']:hover {
 		</div>
 		
 		<div id="contents">
-			<form name="register_form" action="game_register_action.do" method="post" enctype="multipart/form-data">
+			<form name="register_form" action="game_register_action" method="post" enctype="multipart/form-data">
 			<!-- 김규빈
 				이미지 파일을 전송하기 위해서 enctype 이 multipart/form-data여야 한다.
 				기본 값인 application/x-www-form-urlencoded로 되면, 텍스트 형식만 넘겨줄 수 있기 때문이다.
@@ -409,10 +409,10 @@ form[name='register_form'] button[type='submit']:hover {
 							</select>
 						</li>
 						<li>
-							<input name="link" type="url" placeholder="게임 링크(https://www.example.com/)" max="500"/>
+							<input name="link" type="url" placeholder="게임 링크(https://www.example.com/)" max="500" autocomplete="off"/>
 						</li>
 						<li>
-							<input name="intro" type="text" placeholder="게임 소개를 자유롭게 작성해주세요!" max="200"/>
+							<input name="intro" type="text" placeholder="게임 소개를 자유롭게 작성해주세요!" max="200" autocomplete="off"/>
 						</li>
 						<li>
 							<input name="passwd" type="password" placeholder="비밀번호(숫자 4자리)" min="4" max="4"/>

@@ -99,7 +99,7 @@ public class GameServlet extends HttpServlet {
 		}
 		else { // 이미지를 업로드한 경우
 			String uploadPath = req.getServletContext().getRealPath(req.getContextPath());
-			uploadPath = uploadPath.substring(0, uploadPath.lastIndexOf("SSANGGAME")) + "images/game/";
+			uploadPath = uploadPath + "images/game/";
 			
 			File uploadDir = new File(uploadPath); // 이미지 업로드 폴더 객체 생성
 			System.out.println("이미지 업로드 경로 : " + uploadDir.getPath());
