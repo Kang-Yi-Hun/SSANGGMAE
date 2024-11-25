@@ -14,10 +14,10 @@ public class GameDTO {
 	int playerCnt;      /* 게임 인원수 (0: 멀티, 1: 1인용, 2:2인용) */
 	String passwd;       /* 비밀번호 SHA-256 */
 	
-	// select를 위한 field
-	String categoryName; /* 카테고리명 */
+	// insert 및 select를 위한 field
+	CategoryDTO categoryDTO; /* 카테고리명 */
 	
-	
+
 	// method
 	public int getPkGameNo() {
 		return pkGameNo;
@@ -98,13 +98,30 @@ public class GameDTO {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-
-	public String getCategoryName() {
-		return categoryName;
+	
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
 	}
 	
+
+	@Override
+	public String toString() {
+		return "GameDTO Info------------------------"
+				+ "pkGameNo : " + pkGameNo + "\n"
+				+ "title : " + title + "\n"
+				+ "intro : " + intro + "\n"
+				+ "image : " + image + "\n"
+				+ "link : " + link + "\n"
+				+ "isDelete : " + isDelete + "\n"
+				+ "views : " + views + "\n"
+				+ "registerDay : " + registerDay + "\n"
+				+ "playerCnt : " + playerCnt + "\n"
+				+ "passwd : " + passwd + "\n"
+				+ "CategoryDTO : " + categoryDTO.toString()
+				+ "\n------------------------------------";
+	}
 }
