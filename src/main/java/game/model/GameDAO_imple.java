@@ -100,7 +100,7 @@ public class GameDAO_imple implements GameDAO {
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
 					   + " on GC.fk_category_no = C.pk_category_no"
-					   + " where rownum <= 4 "
+					   + " where rownum <= 12 "
 					   + " order by register_day desc";
 			
 			pstmt = conn.prepareStatement(sql);
