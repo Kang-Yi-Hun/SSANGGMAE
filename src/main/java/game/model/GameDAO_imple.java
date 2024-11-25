@@ -268,4 +268,65 @@ public class GameDAO_imple implements GameDAO {
 		return pkGameNo;
 	}
 
+	@Override
+	public List<GameDTO> getGameListByCategory(Integer playerCnt, String selectedCategories) {
+		List<GameDTO> gameList = new ArrayList<>();
+		
+		String innerSql = " where G.is_delete = 0 ";
+
+		try {
+			
+			// playerCnt가 null 또는 3이면 전체조회로 처리
+			if(playerCnt != null && playerCnt != 3) {
+				innerSql += " and G.player_cnt = " + playerCnt + " "; 
+			}
+		
+			
+			// 선택된 카테고리가 없으면
+			if(selectedCategories != null && selectedCategories.length() > 0) {
+				innerSql += " and C.pk_category_no in ( " + selectedCategories + " ) ";
+			}
+			
+			String sql 	= " select pk_game_no, title, intro, image, link, player_cnt, passwd, pk_category_no, c.name as category_name "
+						+ " from TBL_GAME G join TBL_GAME_CATEGORY GC " 
+						+ " on G.pk_game_no = GC.fk_game_no "
+						+ " join tbl_category C " 
+						+ " on GC.fk_category_no = C.pk_category_no " 
+						+ innerSql;
+
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery(); // sql문 실행
+
+			while (rs.next()) {
+
+				GameDTO gameDTO = new GameDTO();
+
+				gameDTO.setPkGameNo(rs.getInt("pk_game_no"));
+				gameDTO.setTitle(rs.getString("title"));
+				gameDTO.setIntro(rs.getString("intro"));
+				gameDTO.setImage(rs.getString("image"));
+				gameDTO.setLink(rs.getString("link"));
+				gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
+				gameDTO.setPasswd(rs.getString("passwd"));
+
+				// 카테고리명을 담기 위해 CategoryDTO를 GameDTO 안에 담았습니다.
+				CategoryDTO categoryDTO = new CategoryDTO();
+				categoryDTO.setPkCategoryNo(rs.getInt("pk_category_no"));
+				categoryDTO.setName(rs.getString("category_name"));
+
+				gameDTO.setCategoryDTO(categoryDTO);
+
+				gameList.add(gameDTO);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return gameList;
+	}
+
 }

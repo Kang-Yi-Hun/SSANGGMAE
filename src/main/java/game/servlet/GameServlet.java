@@ -27,21 +27,31 @@ import game.model.*;
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private final GameDAO gameDAO = new GameDAO_imple();
+	private final GameDAO gameDAO = new GameDAO_imple(); // 재할당, 재선언을 막기 위한 DAO 초기화
 	
+	private final CategoryDAO categoryDAO = new CategoryDAO_imple(); // 재할당, 재선언을 막기 위한 DAO 초기화
+	
+	// HttpServletRequest 객체는 요청하기 위한 모든 정보를 담는다 (헤더 정보, 파라미터, 쿠키, URI, URL 등)
+	// HttpServletResponse 객체는 응답코드, 응답 메시지 등을 전송한다.
+	
+	// GET 요청이면 해당 메소드로 요청을 받는다. 그러나 여기서는 따로 만든 process 메소드로 모든 요청을 한꺼번에 처리
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
 	}
 
+	// POST 요청이면 해당 메소드로 요청을 받는다. 그러나 여기서는 따로 만든 process 메소드로 모든 요청을 한꺼번에 처리
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		process(req, resp);
 	}
 
+	/*
+	 * 모든 요청에 대해 URI를 확인 후 요청에 맞게 메소드를 실행하는 처리 메소드
+	 */
 	protected void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		String uri = req.getRequestURI();
+		String uri = req.getRequestURI(); // URI를 가져옴
 
 		if (uri.endsWith("/game")) {
 			games(req, resp);
@@ -53,16 +63,24 @@ public class GameServlet extends HttpServlet {
 			game_register_action(req, resp);
 		} else if (uri.endsWith("/Recentgame")) {
 			game_recent(req, resp);
-		} else if (uri.endsWith("/")) {
+		} else if (uri.endsWith("/browse")) {
+			game_list_by_category(req, resp);
+		}
+		else if (uri.endsWith("/")) {
 			main(req, resp);
 		} 
 	}
 
+	/*
+	 * 메인 홈 페이지로 연결하는 메소드
+	 */
 	private void main(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		forward(req, resp, "/index.jsp");
 	}
 
-	// 게임 등록 화면
+	/*
+	 *  게임 등록 화면으로 연결하는 메소드
+	 */
 	private void game_register(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CategoryDAO categoryDAO = new CategoryDAO_imple();
 		
@@ -73,6 +91,9 @@ public class GameServlet extends HttpServlet {
 		forward(req, resp, "/game_register.jsp");
 	}
 
+	/*
+	 * 등록한 이미지 파일의 이름을 가져오는 메소드
+	 */
 	private static String getFilename(Part part) {
         // courtesy of BalusC : http://stackoverflow.com/a/2424824/281545
         for (String cd : part.getHeader("content-disposition").split(";")) {
@@ -86,7 +107,9 @@ public class GameServlet extends HttpServlet {
         return null;
     }
 	
-	// 게임 등록하기 버튼을 눌렀을 때 실행
+	/*
+	 * 게임 등록하기 버튼을 눌렀을 때 실행
+	 */
 	private void game_register_action(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		GameDTO gameDTO = new GameDTO();
 		
@@ -165,7 +188,8 @@ public class GameServlet extends HttpServlet {
 		    out.close();
 		}
 	}
-
+	
+	// TODO 혹시 사용하지 않는 메소드라면 지워주세요
 	private void games(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<GameDTO> gameList = gameDAO.getPopularGames();
 		
@@ -194,7 +218,9 @@ public class GameServlet extends HttpServlet {
 		forward(req, resp, "/game.jsp");
 	}
 
-	
+	/*
+	 * 최신등록게임 리스트 조회 메소드
+	 */
 	private void game_recent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 최신등록게임 리스트 불러오기
@@ -213,8 +239,10 @@ public class GameServlet extends HttpServlet {
 		forward(req, resp, "/Recentgame.jsp");
 	}
 	
+	/*
+	 * 게임에 대한 상세 모달로 연결하는 메소드
+	 */
 	private void game_details(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("시작");
 		try {
 			int gameNumber = Integer.parseInt(req.getParameter("gameNumber")); // game pk 값
 			
@@ -222,11 +250,9 @@ public class GameServlet extends HttpServlet {
 			
 			if(gameDTO == null) {
 				System.out.println("요청한 gameDTO가 존재하지 않습니다.");
-				// 예외처리..
+				// TODO 예외처리..
 			}
 			else {
-				System.out.println("됨");
-
 				// 이미지 경로 설정
 				if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
 					gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
@@ -236,14 +262,47 @@ public class GameServlet extends HttpServlet {
 			}
 			
 		} catch (NumberFormatException e) {
-
-			// 로그 대용
+			// TODO 로그 대용
 			System.out.println("gameNumber의 값이 올바르지 않습니다.");
 		}
 		
 		forward(req, resp, "/game_details.jsp");
 	}
 	
+	/*
+	 * 카테고리에 의한 게임 목록 조회 메소드
+	 */
+	private void game_list_by_category(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String selectedCategories = req.getParameter("categories"); // 선택된 카테고리 pk들의 문자열 ex) '1, 2'
+		
+		//TODO NumberFormatException 예외 처리해야됨
+		//TODO 리팩토링 필요
+		Integer playerCnt = (req.getParameter("playerCnt") == null || req.getParameter("playerCnt").isBlank()) ? 3 : Integer.parseInt(req.getParameter("playerCnt"));
+		String playerCount = "";
+		
+		List<GameDTO> gameList = gameDAO.getGameListByCategory(playerCnt, selectedCategories);
+		List<CategoryDTO> categoryList = categoryDAO.getCategoryList();
+		
+		switch(playerCnt) {
+		case 0 : playerCount = "멀티"; break;
+		case 1 : playerCount = "1인칭"; break;
+		case 2 : playerCount = "2인칭"; break;
+		case 3 : playerCount = "전체"; break;
+		default : playerCount = "전체"; playerCnt = 3; break;
+		}
+		
+		req.setAttribute("gameList", gameList);
+		req.setAttribute("categoryList", categoryList);
+		req.setAttribute("selectedCategories", selectedCategories == null ? null : selectedCategories.split(","));
+		req.setAttribute("playerCount", playerCount);
+		req.setAttribute("playerCnt", String.valueOf(playerCnt));
+		
+		forward(req, resp, "/game_browse.jsp");
+	}
+	
+	/*
+	 * 처리된 요청과 응답과 함께 특정 경로의 JSP파일을 불러오는 메소드 
+	 */
 	public void forward(HttpServletRequest req, HttpServletResponse resp, String path) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher(path);
 		rd.forward(req, resp);
