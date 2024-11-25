@@ -6,13 +6,14 @@
 		<head>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<title>쌍겜추</title>
+			<title>쌍겜추 최신게임</title>
 
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/body.css">
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Recentgame.css">
 			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star_background.css">
+			<link rel="stylesheet" href="${pageContext.request.contextPath}/css/game_detail_header.css">
 		</head>
 
 		<body>
@@ -38,50 +39,11 @@
 				<!-- 가상의 높이를 준 것이다 -->
 				<div id="main">
 
-					<div id="sidebar">
-						<div id="button_box">
-							<button type="button">점메추</button>
-							<button type="button" onclick="location.href='${pageContext.request.contextPath}/game_register';">게임등록하기</button>
-						</div>
-					</div>
-
-
 					<!-- 가상의 높이를 준 것이다  여기에 상세페이지나 게임등록페이지의 내용이 들어가면 될 것 같다.-->
 					<div id="contents">
 					<jsp:include page="/game_detail_header.jsp"></jsp:include>
 					
 						<!-- div#main 부터 게임상세페이지 내용 -->
-						<!-- jstl 레퍼런스 더 좋은 방법이 있다면 적용해보세요 -->
-						<div id="game_top">
-
-							<div id="header">인기게임</div>
-							<div class="game_box">
-
-								<!-- forEach문으로 var는 하나의 item, items는 List<gameDTO>인 gameList를 말합니다. 따라서 game은 하나의 gameDTO입니다. -->
-								<c:forEach var="game" items="${gameList}">
-									<div class="game_link" onclick="gameDetails(${game.getPkGameNo()});">
-										<div class="img_wrapper">
-											<img src="${game.getImage()}" onerror="this.onerror=null; this.src='images/logo/logo_white_artboard.png';"/>
-										</div>
-										<span class="game_name">${game.getTitle()}</span>
-									</div>
-								</c:forEach>
-
-								<!-- if는 조건문입니다. test 안 "" 내부에 조건문을 넣으세요 -->
-								<c:if test="${gameList.size() < 4}">
-									<c:forEach begin="0" end="${3 - gameList.size()}" step="1" var="i">
-										<div class="game_link" onclick="location.href='${pageContext.request.contextPath}/game_register';">
-											<div class="img_wrapper">
-												<img src="images/logo/logo_white_artboard.png" />
-											</div>
-											<span class="game_name">등록된 게임이 없습니다</span>
-										</div>
-									</c:forEach>
-								</c:if>
-
-							</div>
-						</div>
-
 						<div id="game_bottom">
 
 							<div id="header">최신등록게임</div>
@@ -98,17 +60,7 @@
 									</div>
 								</c:forEach>
 
-								<!-- if는 조건문입니다. test 안 "" 내부에 조건문을 넣으세요 -->
-								<c:if test="${Recent_gameList.size() < 4}">
-									<c:forEach begin="0" end="${3 - Recent_gameList.size()}" step="1" var="i">
-										<div class="game_link" href="https://www.chelseafc.com/en">
-											<div class="img_wrapper">
-												<img src="images/logo/logo.png" />
-											</div>
-											<span class="game_name">등록된 게임이 없습니다</span>
-										</div>
-									</c:forEach>
-								</c:if>
+						
 							</div>
 
 						</div>

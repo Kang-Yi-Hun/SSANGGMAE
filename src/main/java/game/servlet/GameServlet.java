@@ -51,6 +51,8 @@ public class GameServlet extends HttpServlet {
 			game_register(req, resp);
 		} else if (uri.endsWith("/game_register_action")) {
 			game_register_action(req, resp);
+		} else if (uri.endsWith("/Recentgame")) {
+			game_recent(req, resp);
 		} else if (uri.endsWith("/")) {
 			main(req, resp);
 		} 
@@ -192,6 +194,25 @@ public class GameServlet extends HttpServlet {
 		forward(req, resp, "/game.jsp");
 	}
 
+	
+	private void game_recent(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// 최신등록게임 리스트 불러오기
+		List<GameDTO> Recent_gameList = gameDAO.getRecentGames();
+
+		// 이미지 경로 설정
+		for(GameDTO gameDTO: Recent_gameList) {
+			if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
+				gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
+			}
+		}
+		
+		// 뭔지 모르겠으나 이걸로 했어요
+		req.setAttribute("Recent_gameList", Recent_gameList);
+		
+		forward(req, resp, "/Recentgame.jsp");
+	}
+	
 	private void game_details(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("시작");
 		try {
