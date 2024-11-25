@@ -59,7 +59,7 @@
 								<c:forEach var="game" items="${gameList}">
 									<div class="game_link" onclick="gameDetails(${game.getPkGameNo()});">
 										<div class="img_wrapper">
-											<img src="${game.getImage()}" />
+											<img src="${game.getImage()}" onerror="this.onerror=null; this.src='images/logo/logo_white_artboard.png';"/>
 										</div>
 										<span class="game_name">${game.getTitle()}</span>
 									</div>
@@ -90,7 +90,7 @@
 								<c:forEach var="game" items="${Recent_gameList}">
 									<div class="game_link" onclick="gameDetails(${game.getPkGameNo()});">
 										<div class="img_wrapper">
-											<img src="${game.getImage()}" />
+											<img src="${game.getImage()}" onerror="this.onerror=null; this.src='images/logo/logo_white_artboard.png';"/>
 										</div>
 										<span class="game_name">${game.getTitle()}</span>
 									</div>

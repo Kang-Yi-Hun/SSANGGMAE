@@ -95,7 +95,7 @@ public class GameDAO_imple implements GameDAO {
 		List<GameDTO> Recent_gameList = new ArrayList<>();
 		
 		try {
-			String sql = " select pk_game_no, title, intro, image, link, player_cnt, passwd, c.name as category_name "
+			String sql = " select pk_game_no, title, intro, image, link, player_cnt, passwd, pk_category_no, c.name as category_name "
 					   + " from TBL_GAME G join TBL_GAME_CATEGORY GC "
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
@@ -121,7 +121,11 @@ public class GameDAO_imple implements GameDAO {
 //				gameDTO.setRegisterDay(rs.getString("register_day"));
 				gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
 				gameDTO.setPasswd(rs.getString("passwd"));
-				gameDTO.setCategoryName(rs.getString("category_name"));
+				
+				// 카테고리명을 담기 위해 CategoryDTO를 GameDTO 안에 담았습니다.
+				CategoryDTO categoryDTO = new CategoryDTO();
+				categoryDTO.setPkCategoryNo(rs.getInt("pk_category_no"));
+				categoryDTO.setName(rs.getString("category_name"));
 				
 				Recent_gameList.add(gameDTO);
 			}

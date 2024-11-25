@@ -99,6 +99,9 @@ public class GameServlet extends HttpServlet {
 		}
 		else { // 이미지를 업로드한 경우
 			String uploadPath = req.getServletContext().getRealPath(req.getContextPath());
+			if(uploadPath.endsWith("SSANGGAME")) { // 끝에 \SSANGGAME\SSANGGAME 로 끝나는 경우
+				uploadPath = uploadPath.substring(0, uploadPath.lastIndexOf("SSANGGAME")); // 끝에 SSANGGAME을 자른다.
+			}
 			uploadPath = uploadPath + "images/game/";
 			
 			File uploadDir = new File(uploadPath); // 이미지 업로드 폴더 객체 생성
@@ -107,7 +110,7 @@ public class GameServlet extends HttpServlet {
 			
 			if(!uploadDir.exists()) { // 이미지 업로드 폴더가 없으면
 				if(!uploadDir.mkdir()) { // 폴더 생성
-					System.out.println("폴더 생성 실패");
+					System.out.println("이미지 업로드 폴더 생성 실패");
 				}
 			}
 			
@@ -165,13 +168,9 @@ public class GameServlet extends HttpServlet {
 		List<GameDTO> gameList = gameDAO.getPopularGames();
 		
 		// 이미지 경로 설정
-		for(GameDTO game: gameList) {
-			if(game.getImage() == null) {
-				game.setImage(req.getContextPath() + "/images/logo/logo_white_artboard.png");
-			}
-			else if(!game.getImage().startsWith("http")) {
-				game.setImage(req.getContextPath() + "/images/game/" + game.getImage());
-				System.out.println(game.getImage());
+		for(GameDTO gameDTO: gameList) {
+			if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
+				gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
 			}
 		}
 		
@@ -179,6 +178,14 @@ public class GameServlet extends HttpServlet {
 		
 		// 최신등록게임 리스트 불러오기
 		List<GameDTO> Recent_gameList = gameDAO.getRecentGames();
+
+		// 이미지 경로 설정
+		for(GameDTO gameDTO: Recent_gameList) {
+			if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
+				gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
+			}
+		}
+		
 		// 뭔지 모르겠으나 이걸로 했어요
 		req.setAttribute("Recent_gameList", Recent_gameList);
 		
@@ -200,10 +207,7 @@ public class GameServlet extends HttpServlet {
 				System.out.println("됨");
 
 				// 이미지 경로 설정
-				if(gameDTO.getImage() == null) {
-					gameDTO.setImage(req.getContextPath() + "/images/logo/logo_white_artboard.png");
-				}
-				else if(!gameDTO.getImage().startsWith("http")) {
+				if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
 					gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
 				}
 				

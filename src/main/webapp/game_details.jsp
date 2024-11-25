@@ -16,7 +16,7 @@
 				<div id="game_main">
 					<div id="image-container">
 						<div id="game_image_wrapper">
-							<img class="game_image" src="${gameDTO.getImage()}" />
+							<img class="game_image" src="${gameDTO.getImage()}" onerror="this.onerror=null; this.src='images/logo/logo_white_artboard.png';"/>
 						</div>
 
 						<a id="start_game_button" href="${gameDTO.getLink()}">
