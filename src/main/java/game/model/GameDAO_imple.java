@@ -39,7 +39,8 @@ public class GameDAO_imple implements GameDAO {
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
 					   + " on GC.fk_category_no = C.pk_category_no"
-					   + " where rownum <= 4 ";
+					   + " where rownum <= 4 "
+					   + " order by views desc ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -121,44 +122,54 @@ public class GameDAO_imple implements GameDAO {
 	/*
 	 * 게임 상세 정보 조회
 	 */
-	@Override
-	public GameDTO getGameDetails(int gameNumber) {
-		GameDTO gameDTO = new GameDTO(); // GameDTO 객체 초기화
-		
-		try {
-			
-			String sql 	= " select title, intro, image, link, views, register_day, player_cnt, passwd "
-						+ " from tbl_game "
-						+ " where pk_game_no = ? and is_delete = 0";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, gameNumber);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				gameDTO.setTitle(rs.getString("title"));
-				gameDTO.setIntro(rs.getString("intro"));
-				gameDTO.setImage(rs.getString("image"));
-				gameDTO.setLink(rs.getString("link"));
-				
-				gameDTO.setViews(rs.getInt("views"));
-				gameDTO.setRegisterDay(rs.getString("register_day"));
-				gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
-				gameDTO.setPasswd(rs.getString("passwd"));
-			}
-			else {
-				gameDTO = null;
-			}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		
-		return gameDTO;
-	}
+   @Override
+   public GameDTO getGameDetails(int gameNumber) {
+      GameDTO gameDTO = new GameDTO(); // GameDTO 객체 초기화
+      
+      try {
+         
+         String sql    = " select title, intro, image, link, views, register_day, player_cnt, passwd "
+                  + " from tbl_game "
+                  + " where pk_game_no = ? and is_delete = 0";
+         
+         pstmt = conn.prepareStatement(sql);
+         
+         pstmt.setInt(1, gameNumber);
+         
+         rs = pstmt.executeQuery();
+         
+         if(rs.next()) {
+            gameDTO.setTitle(rs.getString("title"));
+            gameDTO.setIntro(rs.getString("intro"));
+            gameDTO.setImage(rs.getString("image"));
+            gameDTO.setLink(rs.getString("link"));
+            
+            gameDTO.setViews( (rs.getInt("views") + 1 ));
+            gameDTO.setRegisterDay(rs.getString("register_day"));
+            gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
+            gameDTO.setPasswd(rs.getString("passwd"));
+         }         
+         else {
+            gameDTO = null;
+         }
+         
+         String sql2 = " update TBL_GAME set views = ? "
+                  + " where pk_game_no = ? ";
+      
+         pstmt = conn.prepareStatement(sql2);
+         
+         pstmt.setInt(1, gameDTO.getViews());
+         pstmt.setInt(2, gameNumber);
+         
+         pstmt.executeUpdate();
+         
+      } catch(SQLException e) {
+         e.printStackTrace();
+      } finally {
+         close();
+      }
+      
+      return gameDTO;
+   }
 
 }
