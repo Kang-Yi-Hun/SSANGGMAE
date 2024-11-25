@@ -16,7 +16,7 @@
 				<div id="game_main">
 					<div id="image-container">
 						<div id="game_image_wrapper">
-							<img class="game_image" src="${gameDTO.getImage()}" />
+							<img class="game_image" src="${gameDTO.getImage()}" onerror="this.onerror=null; this.src='images/logo/logo_white_artboard.png';"/>
 						</div>
 
 						<a id="start_game_button" href="${gameDTO.getLink()}">
@@ -51,7 +51,7 @@
 								<c:out value="${gameDTO.getViews()}" />
 							</p>
 							<p class="detail">카테고리 :
-								<c:out value="${gameDTO.getCategoryName()}" />
+								<c:out value="${gameDTO.getCategoryDTO().getName()}" />
 							</p>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 			<div id="background"></div>
 
 
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 			<script>
 
 				$(window).scroll(e => {

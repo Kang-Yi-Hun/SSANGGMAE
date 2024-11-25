@@ -16,6 +16,11 @@
 		<url-pattern>/css/*</url-pattern>
 	</servlet-mapping>
 
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/js/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- 이미지 파일 확장자별 매핑 -->
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
