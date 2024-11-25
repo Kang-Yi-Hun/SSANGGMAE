@@ -46,7 +46,8 @@ public class GameDAO_imple implements GameDAO {
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
 					   + " on GC.fk_category_no = C.pk_category_no"
-					   + " where rownum <= 4 ";
+					   + " where rownum <= 4 "
+					   + " order by views desc ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -91,42 +92,38 @@ public class GameDAO_imple implements GameDAO {
 	 */
 	@Override
 	public List<GameDTO> getRecentGames() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * 게임 상세 정보 조회
-	 */
-	@Override
-	public GameDTO getGameDetails(int gameNumber) {
-		GameDTO gameDTO = new GameDTO(); // GameDTO 객체 초기화
+		List<GameDTO> Recent_gameList = new ArrayList<>();
 		
 		try {
-			
-			String sql 	= " select title, intro, image, link, views, register_day, player_cnt, passwd "
-						+ " from tbl_game "
-						+ " where pk_game_no = ? and is_delete = 0";
+			String sql = " select pk_game_no, title, intro, image, link, player_cnt, passwd, c.name as category_name "
+					   + " from TBL_GAME G join TBL_GAME_CATEGORY GC "
+					   + " on G.pk_game_no = GC.fk_game_no "
+					   + " join tbl_category C "
+					   + " on GC.fk_category_no = C.pk_category_no"
+					   + " where rownum <= 4 "
+					   + " order by register_day desc";
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, gameNumber);
+			rs = pstmt.executeQuery(); // sql문 실행
 			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+			while(rs.next()) {
+				
+				GameDTO gameDTO = new GameDTO();
+				
+				gameDTO.setPkGameNo(rs.getInt("pk_game_no"));
 				gameDTO.setTitle(rs.getString("title"));
 				gameDTO.setIntro(rs.getString("intro"));
 				gameDTO.setImage(rs.getString("image"));
 				gameDTO.setLink(rs.getString("link"));
-				
-				gameDTO.setViews(rs.getInt("views"));
-				gameDTO.setRegisterDay(rs.getString("register_day"));
+//				gameDTO.setIsDelete(rs.getInt("is_delete"));
+//				gameDTO.setViews(rs.getInt("views"));
+//				gameDTO.setRegisterDay(rs.getString("register_day"));
 				gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
 				gameDTO.setPasswd(rs.getString("passwd"));
-			}
-			else {
-				gameDTO = null;
+				gameDTO.setCategoryName(rs.getString("category_name"));
+				
+				Recent_gameList.add(gameDTO);
 			}
 			
 		} catch(SQLException e) {
@@ -135,8 +132,61 @@ public class GameDAO_imple implements GameDAO {
 			close();
 		}
 		
-		return gameDTO;
+		return Recent_gameList;
 	}
+  
+	/*
+	 * 게임 상세 정보 조회
+	 */
+   @Override
+   public GameDTO getGameDetails(int gameNumber) {
+      GameDTO gameDTO = new GameDTO(); // GameDTO 객체 초기화
+      
+      try {
+         
+         String sql    = " select title, intro, image, link, views, register_day, player_cnt, passwd "
+                  + " from tbl_game "
+                  + " where pk_game_no = ? and is_delete = 0";
+         
+         pstmt = conn.prepareStatement(sql);
+         
+         pstmt.setInt(1, gameNumber);
+         
+         rs = pstmt.executeQuery();
+         
+         if(rs.next()) {
+            gameDTO.setTitle(rs.getString("title"));
+            gameDTO.setIntro(rs.getString("intro"));
+            gameDTO.setImage(rs.getString("image"));
+            gameDTO.setLink(rs.getString("link"));
+            
+            gameDTO.setViews( (rs.getInt("views") + 1 ));
+            gameDTO.setRegisterDay(rs.getString("register_day"));
+            gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
+            gameDTO.setPasswd(rs.getString("passwd"));
+         }         
+         else {
+            gameDTO = null;
+         }
+         
+         String sql2 = " update TBL_GAME set views = ? "
+                  + " where pk_game_no = ? ";
+      
+         pstmt = conn.prepareStatement(sql2);
+         
+         pstmt.setInt(1, gameDTO.getViews());
+         pstmt.setInt(2, gameNumber);
+         
+         pstmt.executeUpdate();
+         
+      } catch(SQLException e) {
+         e.printStackTrace();
+      } finally {
+         close();
+      }
+      
+      return gameDTO;
+   }
 
 	/**
 	 * 게임 등록

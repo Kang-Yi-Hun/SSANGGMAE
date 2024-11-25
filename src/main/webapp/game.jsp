@@ -85,23 +85,28 @@
 							<div id="header">최신등록게임</div>
 
 							<div class="game_box">
-								<div class="game_link">
-									<div class="img_wrapper">
-										<img src="images/logo/logo_white_artboard.png" />
-									</div> <span class="game_name">게임이름1</span>
-								</div> <div class="game_link">
-									<div class="img_wrapper">
-										<img src="images/logo/logo_white_artboard.png" />
-									</div> <span class="game_name">게임이름2</span>
-								</div> <div class="game_link">
-									<div class="img_wrapper">
-										<img src="images/logo/logo_white_artboard.png" />
-									</div> <span class="game_name">게임이름3</span>
-								</div> <div class="game_link">
-									<div class="img_wrapper">
-										<img src="images/logo/logo_white_artboard.png" />
-									</div> <span class="game_name">게임이름4</span>
-								</div>
+							
+								<!-- forEach문으로 var는 하나의 item, items는 List<gameDTO>인 gameList를 말합니다. 따라서 game은 하나의 gameDTO입니다. -->
+								<c:forEach var="game" items="${Recent_gameList}">
+									<div class="game_link" onclick="gameDetails(${game.getPkGameNo()});">
+										<div class="img_wrapper">
+											<img src="${game.getImage()}" />
+										</div>
+										<span class="game_name">${game.getTitle()}</span>
+									</div>
+								</c:forEach>
+
+								<!-- if는 조건문입니다. test 안 "" 내부에 조건문을 넣으세요 -->
+								<c:if test="${Recent_gameList.size() < 4}">
+									<c:forEach begin="0" end="${3 - Recent_gameList.size()}" step="1" var="i">
+										<div class="game_link" href="https://www.chelseafc.com/en">
+											<div class="img_wrapper">
+												<img src="images/logo/logo.png" />
+											</div>
+											<span class="game_name">등록된 게임이 없습니다</span>
+										</div>
+									</c:forEach>
+								</c:if>
 							</div>
 
 						</div>
