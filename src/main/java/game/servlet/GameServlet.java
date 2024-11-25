@@ -52,6 +52,11 @@ public class GameServlet extends HttpServlet {
 		
 		req.setAttribute("gameList", gameList);
 		
+		// 최신등록게임 리스트 불러오기
+		List<GameDTO> Recent_gameList = gameDAO.getRecentGames();
+		// 뭔지 모르겠으나 이걸로 했어요
+		req.setAttribute("Recent_gameList", Recent_gameList);
+		
 		forward(req, resp, "/game.jsp");
 	}
 
