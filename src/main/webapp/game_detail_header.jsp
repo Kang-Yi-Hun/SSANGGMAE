@@ -11,7 +11,7 @@
 	<%-- 게임 상세 페이지 전용 헤더 (전체게임, 인기게임, 최신게임, 게임추가) --%>
 	<div id="player_cnt_container">
 		<a class="player_cnt_item" href="${pageContext.request.contextPath}/browse">전체게임</a>
-		<a class="player_cnt_item" href="#">인기게임</a>
+		<a class="player_cnt_item" href="${pageContext.request.contextPath}/popular_game">인기게임</a>
 		<a class="player_cnt_item" href="${pageContext.request.contextPath}/Recentgame">최신게임</a>
 		<a class="player_cnt_item" href="#">게임추가</a>
 	</div>

@@ -100,7 +100,7 @@ public class GameDAO_imple implements GameDAO {
 					   + " on G.pk_game_no = GC.fk_game_no "
 					   + " join tbl_category C "
 					   + " on GC.fk_category_no = C.pk_category_no"
-					   + " where rownum <= 12 "
+					   + " where rownum <= 12 and G.is_delete = 0 "
 					   + " order by register_day desc";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -138,6 +138,60 @@ public class GameDAO_imple implements GameDAO {
 		
 		return Recent_gameList;
 	}
+	
+	/**
+	 * 조회수 순 인기 목록 조회
+	 */
+	@Override
+	public List<GameDTO> getPopularGamesAll() {
+		List<GameDTO> PopulargameList = new ArrayList<>();
+		
+		try {
+			String sql = " select pk_game_no, title, intro, image, link, player_cnt, passwd, pk_category_no, c.name as category_name "
+					   + " from TBL_GAME G join TBL_GAME_CATEGORY GC "
+					   + " on G.pk_game_no = GC.fk_game_no "
+					   + " join tbl_category C "
+					   + " on GC.fk_category_no = C.pk_category_no "
+					   + " where G.is_delete = 0 "
+					   + " order by views desc ";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery(); // sql문 실행
+			
+			while(rs.next()) {
+				
+				GameDTO gameDTO = new GameDTO();
+				
+				gameDTO.setPkGameNo(rs.getInt("pk_game_no"));
+				gameDTO.setTitle(rs.getString("title"));
+				gameDTO.setIntro(rs.getString("intro"));
+				gameDTO.setImage(rs.getString("image"));
+				gameDTO.setLink(rs.getString("link"));
+//				gameDTO.setIsDelete(rs.getInt("is_delete"));
+//				gameDTO.setViews(rs.getInt("views"));
+//				gameDTO.setRegisterDay(rs.getString("register_day"));
+				gameDTO.setPlayerCnt(rs.getInt("player_cnt"));
+				gameDTO.setPasswd(rs.getString("passwd"));
+				
+				// 카테고리명을 담기 위해 CategoryDTO를 GameDTO 안에 담았습니다.
+				CategoryDTO categoryDTO = new CategoryDTO();
+				categoryDTO.setPkCategoryNo(rs.getInt("pk_category_no"));
+				categoryDTO.setName(rs.getString("category_name"));
+				
+				gameDTO.setCategoryDTO(categoryDTO);
+				
+				PopulargameList.add(gameDTO);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return PopulargameList;
+	} // end of public List<GameDTO> getPopularGamesAll() {}---------- 
   
 	/*
 	 * 게임 상세 정보 조회
