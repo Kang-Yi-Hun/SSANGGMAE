@@ -61,6 +61,8 @@ public class GameServlet extends HttpServlet {
 			game_register(req, resp);
 		} else if (uri.endsWith("/game_register_action")) {
 			game_register_action(req, resp);
+		} else if (uri.endsWith("/popular_game")) { 
+			game_popular(req, resp);
 		} else if (uri.endsWith("/Recentgame")) {
 			game_recent(req, resp);
 		} else if (uri.endsWith("/browse")) {
@@ -216,6 +218,24 @@ public class GameServlet extends HttpServlet {
 		req.setAttribute("Recent_gameList", Recent_gameList);
 		
 		forward(req, resp, "/game.jsp");
+	}
+	
+	/*
+	 * 인기게임 페이지 리스트 조회 메소드
+	 */
+	private void game_popular(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<GameDTO> PopulargameList = gameDAO.getPopularGamesAll();
+		
+		// 이미지 경로 설정
+		for(GameDTO gameDTO: PopulargameList) {
+			if(gameDTO.getImage() != null && !gameDTO.getImage().startsWith("http")) {
+				gameDTO.setImage(req.getContextPath() + "/images/game/" + gameDTO.getImage());
+			}
+		}
+		
+		req.setAttribute("PopulargameList", PopulargameList);
+		
+		forward(req, resp, "/popular_game.jsp");
 	}
 
 	/*
