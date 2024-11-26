@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+body {
+	font-size: 1.25rem;
+	font-family: "NeoDunggeunmo";
+}
+
+/* 카테고리 사이드바 전체를 감싸는 컨테이너 */
+div#sidebar_category_container {
+	padding: 1rem;
+	width: 100%;
+	position: sticky;
+	top: 6rem;
+	background-color: #3b3b3b;
+
+	clip-path: polygon(
+		calc(100% - 0.4rem) 0%,
+		calc(100% - 0.4rem) 0.2rem,
+		calc(100% - 0.2rem) 0.2rem,
+		calc(100% - 0.2rem) 0.4rem,
+		100% 0.4rem,
+		100% calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.4rem),
+		calc(100% - 0.2rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) calc(100% - 0.2rem),
+		calc(100% - 0.4rem) 100%,
+		0.4rem 100%,
+		0.4rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.2rem),
+		0.2rem calc(100% - 0.4rem),
+		0% calc(100% - 0.4rem),
+		0% 0.4rem,
+		0.2rem 0.4rem,
+		0.2rem 0.2rem,
+		0.4rem 0.2rem,
+		0.4rem 0%
+	);
+}
+
+/* 인원수 카테고리 컨테이너 */
+div#player_cnt_category {
+	margin-bottom: 20px;
+	padding: 5px 0;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+div#player_cnt_category > span {
+	margin-bottom: 5px;
+	font-size: 21pt;
+	color: #f2d377;
+	font-weight: bold;
+}
+
+div#game_category {
+	padding: 5px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	color: white;
+}
+
+div#game_category > span {
+	margin-bottom: 5px;
+	font-size: 21pt;
+	color: #f2d377;
+	font-weight: bold;
+}
+
+.player_cnt_btn {
+	margin: 10px 0 10px 10px;
+	position: relative;
+	color: white;
+	border: none;
+	background-color: transparent;
+	font-size: 17pt;
+	font-family: "NeoDunggeunmo";
+}
+
+.player_cnt_btn:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -5px;
+	width: 0px;
+	height: 2px;
+	margin: 5px 0 0;
+	transition: all 0.4s ease-in-out;
+	transition-duration: 0.3s;
+	opacity: 0;
+	background-color: var(--main-key-color);
+}
+
+.player_cnt_btn:hover:after {
+	width: 100%;
+	opacity: 1;
+}
+
+.player_cnt_active {
+	color: var(--main-key-color);
+}
+
+.category_btn {
+	margin: 10px 0 10px 10px;
+	position: relative;
+	color: white;
+	border: none;
+	background-color: transparent;
+	font-size: 17pt;
+	font-family: "NeoDunggeunmo";
+}
+
+.category_btn:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -5px;
+	width: 0px;
+	height: 2px;
+	margin: 5px 0 0;
+	transition: all 0.4s ease-in-out;
+	transition-duration: 0.3s;
+	opacity: 0;
+	background-color: var(--main-key-color);
+}
+
+.category_btn:hover:after {
+	width: 100%;
+	opacity: 1;
+}
+
+.category_active {
+	color: var(--main-key-color);
+}
